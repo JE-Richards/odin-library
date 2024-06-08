@@ -8,33 +8,19 @@ function Book (title, author, pageCount, readStatus, rating) {
     this.rating = rating;
 }
 
-function addBookToLibrary (book) {
-    return myLibrary.push(book);
+Book.prototype.addBookToLibrary = function() {
+    return myLibrary.push(this);
 }
 
 function displayBooks () {
-    const page = document.querySelector('.container');
-    const table = document.createElement('table');
+    const tbody = document.querySelector('tbody');
 
-    const header = table.createTHead();
-    let headerRow = header.insertRow(0);
-    headerRow.insertCell(0).outerHTML = "<th scope='col'>Title</th>";
-    headerRow.insertCell(1).outerHTML = "<th scope='col'>Author</th>";
-    headerRow.insertCell(2).outerHTML = "<th scope='col'>Page Count</th>";
-    headerRow.insertCell(3).outerHTML = "<th scope='col'>Read Status</th>";
-    headerRow.insertCell(4).outerHTML = "<th scope='col'>Rating (/5)</th>";
+    let row = tbody.insertRow(-1);
+    row.dataset.book = myLibrary.at(-1)['title'];
+    let tableCols = ['title', 'author', 'pageCount', 'readStatus', 'rating'];
 
-    const body = table.createTBody();
-
-
-    for (let i=0; i < myLibrary.length; i++) {
-        let row = body.insertRow(-1);
-        let tableCols = ['title', 'author', 'pageCount', 'readStatus', 'rating'];
-
-        for (let j=0; j < tableCols.length; j++) {
-            let cell = row.insertCell(j);
-            cell.innerHTML = myLibrary[i][tableCols[j]];
-        }
+    for (let i=0; i < tableCols.length; i++) {
+        let cell = row.insertCell(i);
+        cell.innerHTML = myLibrary.at(-1)[tableCols[i]];
     }
-    page.appendChild(table);
 }
