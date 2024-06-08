@@ -5,14 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Library</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <header>
         <h1>My Library</h1>
+        <div class="buttonContainer">
+            <button id="addBook">+</button>
+        </div>
     </header>
 
     <div class="container">
+        <dialog>
+            <form action="" id="userInput">
+                <h1>Please Input Book Details</h1>
+                <div id="titleInput">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div id="authorInput">
+                    <label for="author">Author</label>
+                    <input type="text" name="author" id="author">
+                </div>
+                <div id="pageCountInput">
+                    <label for="pageCount"># of Pages</label>
+                    <input type="number" name="pageCount" id="pageCount">
+                </div>
+                <div id="readStatusInput">
+                    <label for="readStatus">Read?</label>
+                    <input type="checkbox" name="readStatus" id="readStatus">
+                </div>
+                <div id="ratingInput">
+                    <div>
+                        <p>Rating</p>
+                    </div>
+                    <div id="ratingDiv">
+                        <label>
+                            <input type="radio" name="stars" id="oneStar" value="1">
+                            <span class="icon">&starf;</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" id="twoStar" value="2">
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" id="threeStar" value="3">
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" id="fourStar" value="4">
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="stars" id="fiveStar" value="5">
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                            <span class="icon">&starf;</span>
+                        </label>
+                    </div>
+                </div>
+                <div id="inputBtns">
+                    <button type="submit" id="submit" form="userInput" value="Submit">Add Book</button>
+                    <button id="cancel">Cancel</button>
+                </div>
+            </form>
+        </dialog>
         <table id="libraryTable">
             <thead>
                 <tr>
@@ -30,4 +95,7 @@
         </table>
     </div>
 </body>
+<footer>
+    <p>Created by&nbsp; <a href="https://github.com/JE-Richards">JE Richards</a></p>
+</footer>
 </html>

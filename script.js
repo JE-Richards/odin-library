@@ -24,3 +24,18 @@ function displayBooks () {
         cell.innerHTML = myLibrary.at(-1)[tableCols[i]];
     }
 }
+
+const addBookBtn = document.getElementById("addBook");
+const dialog = document.querySelector('dialog');
+const submitBtn = document.getElementById("submit");
+const cancelBtn = document.getElementById("cancel");
+
+addBookBtn.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+// submitBtn.addEventListener
+
+cancelBtn.addEventListener("click", () => {
+    dialog.close();
+});
