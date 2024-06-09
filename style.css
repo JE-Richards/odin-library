@@ -1,17 +1,27 @@
-/* Declare theme colors */
+/*---------------------------------*\
+|                                   |
+|           Theme Colours           |
+|                                   |
+\*---------------------------------*/
 :root {
-    --accent-col: #C09F80;
-    --main-content-col: #D7CEC7;
-    --font-col: #565656;
-    --highlight-col: #76323F;
-    --form-col: #ecddd1;
-    --empty-col: black;
+    --accent-col: #1e1e1e;
+    --main-content-col: #262626;
+    --font-col: #dadada;
+    --highlight-col: #A88BFA;
+    --form-col: #151515;
+    --empty-col: #dadada;
     --link-col: #A88BFA;
     --link-hover-col: #725ea8;
     --link-click-col: #5031a7;
     --link-visited-col: #A88BFA;
+    --form-input-background: #1e1e1e;
 }
 
+/*---------------------------------*\
+|                                   |
+|       Multi-section Styles        |
+|                                   |
+\*---------------------------------*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -26,7 +36,18 @@ body {
     height: 100vh;
 }
 
-/* Header Styles */
+/* Remove arrows from form number inputs*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*---------------------------------*\
+|                                   |
+|            Header Styles          |
+|                                   |
+\*---------------------------------*/
 header {
     grid-row: 1 / 2;
     display: grid;
@@ -35,16 +56,34 @@ header {
     padding: 10px;
 }
 
-header h1 {
+header .headerTitle {
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+header .headerTitle svg {
+    font-size: 50px;
+    height: 1.75em;
+    width: 1.75em;
+    fill: var(--highlight-col);
+}
+
+header .headerTitle h1 {
     display: inline-flex;
     align-items: center;
     font-size: 50px;
     grid-column: 1 / 2;
-    color: var(--highlight-col)
+    color: var(--highlight-col);
+    text-wrap: nowrap;
 }
 
 header .buttonContainer {
     grid-column: 2 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .buttonContainer > button {
@@ -57,13 +96,25 @@ header .buttonContainer {
     padding: 5px;
     height: 60px;
     width: 60px;
-    border: 2px solid var(--highlight-col);
+    border: 2px solid var(--link-click-col);
     cursor: pointer;
-    background-color: var(--form-col);
-    color: var(--font-col)
+    background-color: var(--highlight-col);
+    color: var(--accent-col);
 }
 
-/* Page Content styles */
+.buttonContainer > button:hover {
+    background-color: var(--link-hover-col);
+}
+
+.buttonContainer > button:active {
+    background-color: var(--link-click-col);
+}
+
+/*---------------------------------*\
+|                                   |
+|        Page Content Styles        |
+|                                   |
+\*---------------------------------*/
 .container {
     grid-row: 2 / 3;
     background-color: var(--main-content-col);
@@ -91,52 +142,135 @@ td {
     text-align: center;
 }
 
-/* Dialog box styles */
+/*---------------------------------*\
+|                                   |
+|           Dialog Styles           |
+|                                   |
+\*---------------------------------*/
 dialog {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     position: fixed;
     padding: 50px;
-    border: 5px solid var(--accent-col);
+    border: 5px solid var(--highlight-col);
     background-color: var(--form-col);
 }
 
 form {
     display: grid;
     grid-template: repeat(6, max-content) / repeat(2, max-content);
-    gap: 10px;
+    gap: 25px;
 }
 
 form h1 {
     grid-area: 1 / 1 / 2 / 3;
+    font-size: 36px;
+    font-weight: 700;
+    padding-bottom: 20px;
+    color: var(--highlight-col)
+}
+
+form div label {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+form div input[type=text], form div input[type=number] {
+    background-color: var(--form-input-background);
+    border: 1px solid var(--font-col);
+    font-size: 18px;
+    line-height: 1.5em;
+    padding: 5px;
+}
+
+form div input[type=number] {
+    width: 6ch;
 }
 
 #titleInput {
     grid-area: 2 / 1 / 3 / 3;
+    display: grid;
+    grid-template-rows: max-content max-content;
+}
+
+#titleInput label:after {
+    content: "*";
+    color: var(--font-col);
 }
 
 #authorInput {
     grid-area: 3 / 1 / 4 / 3;
+    display: grid;
+    grid-template-rows: max-content max-content;
+}
+
+#authorInput label:after {
+    content: "*";
+    color: var(--font-col);
 }
 
 #pageCountInput {
     grid-area: 4 / 1 / 5 / 2;
 }
 
+#pageCountInput label:after {
+    content: "*";
+    color: var(--font-col);
+}
+
 #readStatusInput {
     grid-area: 4 / 2 / 5 / 3;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#readStatusInput input[type=checkbox] {
+    font-size: 18px;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 8px;
 }
 
 #ratingInput {
     grid-area: 5 / 1 / 6 / 3;
 }
 
-#inputBtns {
-    grid-area: 6 / 1 / 7 / 3;
+#ratingInput p {
+    font-size: 18px;
+    font-weight: 700;
 }
 
-/* Footer styles */
+#inputBtns {
+    grid-area: 6 / 1 / 7 / 3;
+    display: flex;
+    gap: 20px;
+}
+
+#inputBtns button {
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 10px;
+    background-color: var(--highlight-col);
+    color: var(--accent-col);
+    border: 2px solid var(--link-click-col);
+}
+
+#inputBtns button:hover {
+    background-color: var(--link-hover-col);
+}
+
+#inputBtns button:active {
+    background-color: var(--link-click-col);
+}
+
+/*---------------------------------*\
+|                                   |
+|           Footer Styles           |
+|                                   |
+\*---------------------------------*/
 footer {
     grid-row: 3 / 4;
     background-color: var(--accent-col);
@@ -150,6 +284,7 @@ footer p {
 
 footer a {
     text-decoration: none;
+    color: var(--link-col);
 }
 
 footer a:link {
@@ -164,11 +299,11 @@ footer a:active {
     color: var(--link-click-col);
 }
 
-footer a:visited {
-    color: var(--link-visited-col);
-}
-
-/* Styling for the 5 star rating system */
+/*---------------------------------*\
+|                                   |
+|     Custom Star Rating Styles     |
+|                                   |
+\*---------------------------------*/
 #ratingDiv {
     display: in-line-block;
     position: relative;
