@@ -21,15 +21,15 @@
                 <h1>Please Input Book Details</h1>
                 <div id="titleInput">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title">
+                    <input type="text" name="title" id="title" required>
                 </div>
                 <div id="authorInput">
                     <label for="author">Author</label>
-                    <input type="text" name="author" id="author">
+                    <input type="text" name="author" id="author" required>
                 </div>
                 <div id="pageCountInput">
                     <label for="pageCount"># of Pages</label>
-                    <input type="number" name="pageCount" id="pageCount">
+                    <input type="number" name="pageCount" id="pageCount" required>
                 </div>
                 <div id="readStatusInput">
                     <label for="readStatus">Read?</label>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div id="inputBtns">
-                    <button type="submit" id="submit" form="userInput" value="Submit">Add Book</button>
+                    <button type="submit" id="submit" form="userInput">Add Book</button>
                     <button id="cancel">Cancel</button>
                 </div>
             </form>

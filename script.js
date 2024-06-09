@@ -27,14 +27,35 @@ function displayBooks () {
 
 const addBookBtn = document.getElementById("addBook");
 const dialog = document.querySelector('dialog');
-const submitBtn = document.getElementById("submit");
+const inputForm = document.getElementById("userInput");
 const cancelBtn = document.getElementById("cancel");
 
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
 });
 
-// submitBtn.addEventListener
+inputForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pageCount = document.getElementById('pageCount').value;
+    const readStatus = document.getElementById('readStatus').value;
+    let rating = null;
+
+    const stars = document.getElementsByName('stars');
+    for (i=0; i < stars.length; i++) {
+        if (stars[i].checked) {
+            rating = stars[i].value;
+        }
+    }
+
+
+    displayBooks((new Book(title, author, pageCount, readStatus, rating)).addBookToLibrary());
+
+    event.target.reset();
+    dialog.close();
+})
 
 cancelBtn.addEventListener("click", () => {
     dialog.close();
