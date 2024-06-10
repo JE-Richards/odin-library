@@ -13,6 +13,15 @@ Book.prototype.addBookToLibrary = function() {
     return myLibrary.push(this);
 }
 
+Book.prototype.toggleRead = function() {
+    if (this.readStatus === false) {
+        this.readStatus = true;
+    }
+    else if (this.readStatus === true) {
+        this.readStatus = false;
+    }
+}
+
 // function to be called when the form is submitted
 // takes the last entry in the myLibrary array and creates a corresponding table entry for it
 function displayBooks () {
@@ -20,14 +29,32 @@ function displayBooks () {
 
     let row = tbody.insertRow(-1);
     row.dataset.book = myLibrary.at(-1)['title'];
-    let tableCols = ['title', 'author', 'pageCount', 'readStatus', 'rating'];
+    let tableCols = ['title', 'author', 'pageCount', 'readStatus', 'rating', 'action'];
 
-    for (let i=0; i <= tableCols.length; i++) {
+    for (let i=0; i < tableCols.length; i++) {
         let cell = row.insertCell(i);
-        if (i < tableCols.length) {
+        if (tableCols[i] === 'title' ||
+            tableCols[i] === 'author' ||
+            tableCols[i] === 'pageCount' ||
+            tableCols[i] === 'rating' 
+        ) {
             cell.innerHTML = myLibrary.at(-1)[tableCols[i]];
         }
-        else if (i === tableCols.length) {
+        else if (tableCols[i] === 'readStatus') {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = 'bookReadStatus';
+            checkbox.checked = myLibrary.at(-1)[tableCols[i]]
+            checkbox.addEventListener('change', (event) => {
+                let checkRow = event.target.closest('tr');
+                let bookTitle = checkRow.getAttribute('data-book'); 
+                let bookIndex = myLibrary.findIndex(item => item.title === bookTitle);
+                myLibrary[bookIndex].toggleRead();
+            })
+            
+            cell.appendChild(checkbox);
+        }
+        else if (tableCols[i] === 'action') {
             cell.innerHTML = '<button class="deleteBtn">Delete</button>';
 
             // Couldn't get the delte function to work correctly when I recreated it as it's own global function
@@ -62,7 +89,7 @@ inputForm.addEventListener("submit", (event) => {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pageCount = document.getElementById('pageCount').value;
-    const readStatus = document.getElementById('readStatus').value;
+    const readStatus = document.getElementById('readStatus').checked;
     let rating = null;
 
     const stars = document.getElementsByName('stars');
