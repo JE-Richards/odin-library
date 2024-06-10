@@ -1,5 +1,6 @@
 const myLibrary = [];
 
+// define the book object to be used to create library entries
 function Book (title, author, pageCount, readStatus, rating) {
     this.title = title;
     this.author = author;
@@ -12,6 +13,8 @@ Book.prototype.addBookToLibrary = function() {
     return myLibrary.push(this);
 }
 
+// function to be called when the form is submitted
+// takes the last entry in the myLibrary array and creates a corresponding table entry for it
 function displayBooks () {
     const tbody = document.querySelector('tbody');
 
@@ -19,9 +22,27 @@ function displayBooks () {
     row.dataset.book = myLibrary.at(-1)['title'];
     let tableCols = ['title', 'author', 'pageCount', 'readStatus', 'rating'];
 
-    for (let i=0; i < tableCols.length; i++) {
+    for (let i=0; i <= tableCols.length; i++) {
         let cell = row.insertCell(i);
-        cell.innerHTML = myLibrary.at(-1)[tableCols[i]];
+        if (i < tableCols.length) {
+            cell.innerHTML = myLibrary.at(-1)[tableCols[i]];
+        }
+        else if (i === tableCols.length) {
+            cell.innerHTML = '<button class="deleteBtn">Delete</button>';
+
+            // Couldn't get the delte function to work correctly when I recreated it as it's own global function
+            row.querySelector('.deleteBtn').addEventListener('click', (event) => {
+                const delRow = event.target.closest('tr');
+                const delTitle = delRow.getAttribute('data-book');
+                
+                // delete row in table
+                delRow.remove();
+
+                // Find and delete the corresponding array entry
+                let delIndex = myLibrary.findIndex(item => item.title === delTitle);
+                myLibrary.splice(delIndex, 1);
+            });
+        }
     }
 }
 
@@ -30,6 +51,7 @@ const dialog = document.querySelector('dialog');
 const inputForm = document.getElementById("userInput");
 const cancelBtn = document.getElementById("cancel");
 
+// Add functionality to the form and corresponding buttons
 addBookBtn.addEventListener("click", () => {
     dialog.showModal();
 });

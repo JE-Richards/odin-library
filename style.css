@@ -142,6 +142,24 @@ td {
     text-align: center;
 }
 
+.deleteBtn {
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 5px;
+    background-color: var(--highlight-col);
+    color: var(--accent-col);
+    border: 2px solid var(--link-click-col);
+}
+
+.deleteBtn:hover {
+    background-color: var(--link-hover-col);
+}
+
+.deleteBtn:active {
+    background-color: var(--link-click-col);
+}
+
 /*---------------------------------*\
 |                                   |
 |           Dialog Styles           |
