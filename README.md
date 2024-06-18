@@ -18,8 +18,8 @@ This is my attempt to complete this project.
 ## Project Scope
 This project will be improved upon throughout the course. Each time, this will slightly change the scope of the project. 
 
-### Initial Scope:
-- **Completed on:** 10/06/2024
+### Initial Project:
+- Commit SHA: dbc4a54c8925635eee417b8c143434554ce816ef
 - [x] Project is to use HTML, CSS, and JavaScript.
 - [x] All books input are to be stored in an array
 - [x] Write a functon to display each book in the array.
@@ -27,6 +27,10 @@ This project will be improved upon throughout the course. Each time, this will s
 - [x] Within the book display, add a button to allow the user to delete the book.
 - [x] Within the book display, add a toggle for whether the book has been read or not.
     - [x] The toggle changes the data in the underlying array.
+
+### Update 1:
+- Commit SHA: 73342ddc3e3739089e266041a1926f80a7343b44
+- [x] Refactor code to use `class` instead of object constructors.
 
 ## The Library Webpage
 To use the library, please visit the following website: https://je-richards.github.io/odin-library/
